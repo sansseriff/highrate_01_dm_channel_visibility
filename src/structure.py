@@ -196,6 +196,13 @@ class TomoCounts:
 
     def calculate_fidelity(self):
         return (1 - self.rr[3] / self.dd[0]) * 100
+    
+    def calculate_visibility(self, dcr_subtraction = None):
+
+        if dcr_subtraction is not None:
+            return ((self.dd[0] - (self.rr[3] - dcr_subtraction)) / (self.dd[0] + self.rr[3] - dcr_subtraction)) * 100
+        else:
+            return ((self.dd[0] - self.rr[3]) / (self.dd[0] + self.rr[3])) * 100
 
 
 def create_matrix_row(array):
